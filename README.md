@@ -21,4 +21,4 @@ If the password is easy - the first section is red the rest are gray;
 If the password is medium - the first two sections are yellow the last one is gray;
 If the password is strong, all sections are green;
 
-[DEMO](https://github.com/dsfreedom/test-password.git)
+[DEMO](https://dsfreedom.github.io/test-password)
