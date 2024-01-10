@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-// import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +15,12 @@ export class AppComponent {
   passwordStrength = '';
 
   handlePasswordChange(event: Event) {
-    const input = (event.target as HTMLInputElement).value;
+    const input = (event.target as HTMLInputElement).value.trim();
+
+    if (input === '') {
+      this.passwordStrength = '';
+      return;
+    }
 
     const specialCharecters = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 
@@ -34,14 +38,8 @@ export class AppComponent {
       || (!hasLetters && hasNumbers && hasSymbols)
     ) {
       this.passwordStrength = this.strengths[1];
-    } else if (
-      (hasLetters && !hasNumbers && !hasSymbols)
-      || (hasLetters && !hasNumbers && !hasSymbols)
-      || (!hasLetters && !hasNumbers && hasSymbols)
-    ) {
-      this.passwordStrength = this.strengths[0];
     } else {
-      this.passwordStrength = '';
+      this.passwordStrength = this.strengths[0];
     }
   }
 }

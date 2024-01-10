@@ -13,7 +13,7 @@
         placeholder="Write your password"
         (input)="handlePasswordChange($event)"
         type="password"
-        [ngClass]="'app__input app__input--' + passwordStrength.toLowerCase()"
+        class="app__input"
       />
     </div>
 
@@ -35,6 +35,3 @@
 </main>
 
 <router-outlet></router-outlet>
-
-
-<!-- [ngClass]="'app__text app__text--' + passwordStrength.toLowerCase()" -->
