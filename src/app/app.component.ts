@@ -34,8 +34,14 @@ export class AppComponent {
       || (!hasLetters && hasNumbers && hasSymbols)
     ) {
       this.passwordStrength = this.strengths[1];
-    } else {
+    } else if (
+      (hasLetters && !hasNumbers && !hasSymbols)
+      || (hasLetters && !hasNumbers && !hasSymbols)
+      || (!hasLetters && !hasNumbers && hasSymbols)
+    ) {
       this.passwordStrength = this.strengths[0];
+    } else {
+      this.passwordStrength = '';
     }
   }
 }
