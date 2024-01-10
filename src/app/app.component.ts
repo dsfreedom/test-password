@@ -22,24 +22,29 @@ export class AppComponent {
       return;
     }
 
+    if (input.length < 8) {
+      this.passwordStrength = 'unfinished';
+      return;
+    }
+
     const specialCharecters = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 
     const hasLetters = /[a-zA-Z]/g.test(input);
     const hasNumbers = /\d/.test(input);
     const hasSymbols = specialCharecters.test(input);
 
-    if (input.length < 8) {
-      this.passwordStrength = 'unfinished';
-    } else if (hasLetters && hasNumbers && hasSymbols) {
-      this.passwordStrength = this.strengths[2];
-    } else if (
-      (hasLetters && hasNumbers && !hasSymbols)
-      || (hasLetters && !hasNumbers && hasSymbols)
-      || (!hasLetters && hasNumbers && hasSymbols)
-    ) {
-      this.passwordStrength = this.strengths[1];
-    } else {
-      this.passwordStrength = this.strengths[0];
+    const strength = Number(hasLetters) + Number(hasNumbers) + Number(hasSymbols);
+
+    switch (strength) {
+      case 1:
+        this.passwordStrength = this.strengths[0];
+        break;
+      case 2:
+        this.passwordStrength = this.strengths[1];
+        break;
+      case 3:
+        this.passwordStrength = this.strengths[2];
+        break;
     }
   }
 }
