@@ -1,0 +1,40 @@
+<main class="app"> 
+  <form class="app__form">
+    <div class="app__input-wrapper">
+      <label
+       for="password"
+       class="app__label"
+      >
+        Password:
+      </label>
+
+      <input
+        id="password"
+        placeholder="Write your password"
+        (input)="handlePasswordChange($event)"
+        type="password"
+        [ngClass]="'app__input app__input--' + passwordStrength.toLowerCase()"
+      />
+    </div>
+
+    <div
+      [ngClass]="'app__sections app__sections--' + passwordStrength.toLowerCase()"
+    >
+      <div
+        *ngFor="let strength of strengths"
+        class="app__section"
+      >
+        <p
+          class="app__text"
+        >
+          {{ strength }} password
+        </p>       
+      </div>
+    </div>
+  </form>
+</main>
+
+<router-outlet></router-outlet>
+
+
+<!-- [ngClass]="'app__text app__text--' + passwordStrength.toLowerCase()" -->
